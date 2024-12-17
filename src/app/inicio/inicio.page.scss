@@ -1,0 +1,12 @@
+.welcome-avatar {
+    cursor: pointer; /* Cambia el cursor a "manito" al pasar el ratón */
+    width: 120px;
+    height: 120px;
+    margin: 20px auto;
+    transition: transform 0.3s;
+  }
+  
+  .welcome-avatar:hover {
+    transform: scale(1.1); /* Efecto de zoom al pasar el ratón */
+  }
+  

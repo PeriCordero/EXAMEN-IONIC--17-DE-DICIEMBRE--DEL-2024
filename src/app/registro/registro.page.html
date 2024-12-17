@@ -1,0 +1,125 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="register-background">
+  <div class="register-container">
+    <h2>Crear una cuenta</h2>
+
+    <form (ngSubmit)="register()" class="register-form">
+      <!-- Nombre de usuario -->
+      <ion-item [class.invalid]="!isUsernameValid && usernameTouched">
+        <ion-label position="stacked">Nombre de usuario</ion-label>
+        <ion-input [(ngModel)]="username" name="username" type="text" required (blur)="onUsernameBlur()"></ion-input>
+      </ion-item>
+      <small *ngIf="!isUsernameValid && usernameTouched" class="error-message">
+        El nombre de usuario debe tener al menos 3 caracteres.
+      </small>
+
+      <!-- Correo electrónico -->
+      <ion-item [class.invalid]="!isEmailValid && emailTouched">
+        <ion-label position="stacked">Correo electrónico</ion-label>
+        <ion-input [(ngModel)]="email" name="email" type="email" required (blur)="onEmailBlur()"></ion-input>
+      </ion-item>
+      <small *ngIf="!isEmailValid && emailTouched" class="error-message">
+        {{ emailErrorMessage }}
+      </small>
+
+      <!-- Contraseña -->
+      <ion-item [class.invalid]="!isPasswordValid && passwordTouched">
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" name="password" type="password" required (blur)="onPasswordBlur()"></ion-input>
+      </ion-item>
+      <small *ngIf="!isPasswordValid && passwordTouched" class="error-message">
+        {{ passwordErrorMessage }}
+      </small>
+
+      <!-- Confirmar contraseña -->
+      <ion-item [class.invalid]="!isConfirmPasswordValid && confirmPasswordTouched">
+        <ion-label position="stacked">Confirmar contraseña</ion-label>
+        <ion-input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" required (blur)="onConfirmPasswordBlur()"></ion-input>
+      </ion-item>
+      <small *ngIf="!isConfirmPasswordValid && confirmPasswordTouched" class="error-message">
+        Las contraseñas no coinciden.
+      </small>
+
+      <!-- Botón de registro -->
+      <ion-button expand="block" type="submit" class="register-button" [disabled]="isFormInvalid()">Registrarse</ion-button>
+    </form>
+
+    <!-- Botón para volver atrás -->
+    <ion-button expand="block" routerLink="/login" class="back-button" fill="outline">Volver a Iniciar Sesión</ion-button>
+  </div>
+</ion-content>
+
+<style>
+  .register-background {
+    --background: #FFB800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .register-container {
+    text-align: center;
+    padding: 20px;
+    background: #1A1A1A;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    animation: slideIn 0.5s ease-in-out;
+  }
+
+  .register-container h2 {
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+
+  .register-form ion-item {
+    margin-bottom: 15px;
+  }
+
+  .register-button {
+    margin-top: 20px;
+    background-color: #00796b;
+    color: white;
+  }
+
+  .back-button {
+    margin-top: 20px;
+    background-color: transparent;
+    color: #00796b;
+  }
+
+  .invalid ion-input {
+    --border-color: red;
+  }
+
+  .invalid ion-label {
+    color: red;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: block;
+    text-align: left;
+    padding-left: 15px;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>

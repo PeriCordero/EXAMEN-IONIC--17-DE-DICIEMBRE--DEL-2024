@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-avatar>
+        <img [src]="avatar" alt="Avatar del usuario" />
+      </ion-avatar>
+      <ion-card-title>{{ username ? 'Bienvenido ' + username : 'Bienvenido' }} a la Asistencia en línea de Duoc UC</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Generar Código QR</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Botón para generar el código QR -->
+      <ion-button expand="block" color="primary" shape="round" (click)="generateQRCode()">
+        Generar QR
+      </ion-button>
+
+      <!-- Mostrar el código QR solo cuando qrCodeImage tiene un valor -->
+      <div *ngIf="qrCodeImage">
+        <img [src]="qrCodeImage" alt="Código QR" />
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="danger" shape="round" (click)="logout()">
+    Cerrar Sesión
+  </ion-button>
+</ion-content>

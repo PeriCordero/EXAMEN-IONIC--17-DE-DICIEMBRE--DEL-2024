@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asistencias Docente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Botón para generar datos aleatorios -->
+  <ion-button expand="block" (click)="generarDatosAleatorios()">
+    Generar Datos Aleatorios
+  </ion-button>
+
+  <!-- Mostrar un mensaje si la asistencia está registrada -->
+  <ion-card *ngIf="asistencia; else noAsistencia">
+    <ion-card-header>
+      <ion-card-title>Asistencia Registrada</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Docente ID:</strong> {{ asistencia.docenteID }}</p>
+      <p><strong>Clase ID:</strong> {{ asistencia.claseID }}</p>
+      <p><strong>Aula:</strong> {{ asistencia.aula }}</p>
+      <p><strong>Fecha:</strong> {{ asistencia.fecha }}</p>
+      <p><strong>Hora:</strong> {{ asistencia.hora }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Plantilla alternativa si no hay asistencia -->
+  <ng-template #noAsistencia>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>No se pudo registrar la asistencia</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Los parámetros necesarios no se han proporcionado correctamente.</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>
